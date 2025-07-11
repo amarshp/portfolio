@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import BootSequence from '../components/BootSequence';
 import AGIProfile from '../components/AGIProfile';
@@ -20,14 +21,14 @@ const Portfolio = () => {
       
       {/* Main Content */}
       {showContent && (
-        <div className="split-screen animate-fade-in">
+        <div className="split-screen animate-fade-in h-screen flex">
           {/* Left Panel - AGI Profile */}
-          <div className="relative">
+          <div className="w-1/2 h-full overflow-hidden">
             <AGIProfile />
           </div>
           
           {/* Right Panel - Terminal */}
-          <div className="relative">
+          <div className="w-1/2 h-full overflow-hidden">
             <TerminalPanel />
           </div>
         </div>

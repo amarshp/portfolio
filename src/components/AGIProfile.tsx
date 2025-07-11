@@ -7,14 +7,14 @@ import { Badge } from './ui/badge';
 import avatarImage from '../assets/avatar-arjun.jpg';
 
 const SkillBar = ({ skill, level }: { skill: string; level: number }) => (
-  <div className="mb-3">
-    <div className="flex justify-between text-xs font-mono mb-1">
+  <div className="mb-4">
+    <div className="flex justify-between text-xs font-mono mb-2">
       <span>{skill}</span>
       <span>{level}%</span>
     </div>
-    <div className="w-full bg-muted/30 rounded-full h-1">
+    <div className="w-full bg-muted/30 rounded-full h-2">
       <div 
-        className="skill-bar rounded-full transition-all duration-1000 ease-out"
+        className="skill-bar rounded-full transition-all duration-1000 ease-out h-2"
         style={{ width: `${level}%` }}
       />
     </div>
@@ -115,7 +115,7 @@ const AGIProfile = () => {
       <div className="p-6 space-y-6">
         
         {/* Profile Section */}
-        <div className="space-y-4">
+        <div className="bg-card/20 border border-border/30 rounded-lg p-4 space-y-4">
           <h3 className="font-mono text-sm font-medium text-neon-cyan mb-4">AGI.PROFILE</h3>
           
           {/* Avatar */}
@@ -159,7 +159,7 @@ const AGIProfile = () => {
         </div>
 
         {/* Core Skills */}
-        <div className="space-y-4">
+        <div className="bg-card/20 border border-border/30 rounded-lg p-4 space-y-4">
           <h3 className="font-mono text-sm font-medium text-neon-cyan">CORE.SKILLS</h3>
           <div className="grid grid-cols-1 gap-3">
             <SkillBar skill="Data Science" level={95} />
@@ -170,9 +170,9 @@ const AGIProfile = () => {
         </div>
 
         {/* Additional Skills */}
-        <div className="space-y-4">
+        <div className="bg-card/20 border border-border/30 rounded-lg p-4 space-y-4">
           <h3 className="font-mono text-sm font-medium text-neon-cyan">ADDITIONAL.SKILLS</h3>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 gap-2">
             <CircularProgress skill="CP/DSA" level={85} />
             <CircularProgress skill="Cloud Eng" level={80} />
             <CircularProgress skill="Computer Vision" level={78} />
@@ -183,7 +183,7 @@ const AGIProfile = () => {
         </div>
 
         {/* Quick Metrics */}
-        <div className="space-y-4">
+        <div className="bg-card/20 border border-border/30 rounded-lg p-4 space-y-4">
           <h3 className="font-mono text-sm font-medium text-neon-cyan">QUICK.METRICS</h3>
           <div className="grid grid-cols-2 gap-2">
             <MetricCard icon={Code} label="Total Projects" value="34" />
@@ -196,7 +196,7 @@ const AGIProfile = () => {
         </div>
 
         {/* Quick Links */}
-        <div className="space-y-4">
+        <div className="bg-card/20 border border-border/30 rounded-lg p-4 space-y-4">
           <h3 className="font-mono text-sm font-medium text-neon-cyan">QUICK.LINKS</h3>
           <div className="grid grid-cols-2 gap-2">
             <Button variant="outline" size="sm" className="font-mono text-xs neon-glow">
