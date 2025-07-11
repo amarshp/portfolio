@@ -1,13 +1,46 @@
+
 import { useState, useEffect, useRef } from 'react';
 
 const TerminalPanel = () => {
   const [input, setInput] = useState('');
-  const [history, setHistory] = useState<string[]>([
-    'AGI Terminal v3.9.0 - Arjun Reddy Portfolio System',
-    'Type "help" for available commands.',
-    '',
-    'arjun@agi-portfolio:~$ '
+  const [currentTime, setCurrentTime] = useState('');
+  const [availableCommands] = useState([
+    'help',
+    'about', 
+    'projects',
+    'skills',
+    'faang',
+    'contact',
+    'whoami',
+    'clear'
   ]);
+  
+  const getInitialHistory = () => {
+    const now = new Date();
+    const timestamp = now.toLocaleString();
+    
+    return [
+      'AGI Terminal v3.9.0 - Arjun Reddy Portfolio System',
+      '',
+      "Type 'help' for available commands",
+      'System Status: ONLINE',
+      `Last Updated: ${timestamp}`,
+      '',
+      'Available Commands:',
+      '• help - Show command list',
+      '• about - Personal & professional info', 
+      '• projects - Portfolio showcase',
+      '• skills - Technical expertise',
+      '• faang - Interview preparation',
+      '• contact - Get in touch',
+      '• whoami - Display user info',
+      '• clear - Clear terminal',
+      '',
+      'arjun@agi-portfolio:~$ '
+    ];
+  };
+
+  const [history, setHistory] = useState<string[]>(getInitialHistory());
   const terminalRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -20,6 +53,19 @@ const TerminalPanel = () => {
     scrollToBottom();
   }, [history]);
 
+  // Update timestamp periodically
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setCurrentTime(now.toLocaleString());
+    };
+    
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
   const handleCommand = (command: string) => {
     const cmd = command.trim().toLowerCase();
     const newHistory = [...history];
@@ -31,17 +77,34 @@ const TerminalPanel = () => {
     switch (cmd) {
       case 'help':
         newHistory.push('Available commands:');
-        newHistory.push('  help          - Show this help message');
-        newHistory.push('  about         - Show about section');
-        newHistory.push('  projects      - View project showcase');
-        newHistory.push('  skills        - Display skills and tech stack');
-        newHistory.push('  faang         - FAANG interview preparation');
-        newHistory.push('  certs         - Certifications and publications');
-        newHistory.push('  blog          - Personal projects and blog');
-        newHistory.push('  interests     - Personal interests');
-        newHistory.push('  contact       - Contact information');
-        newHistory.push('  clear         - Clear terminal');
-        newHistory.push('  whoami        - Display user info');
+        availableCommands.forEach(cmd => {
+          switch(cmd) {
+            case 'help':
+              newHistory.push('  help          - Show this help message');
+              break;
+            case 'about':
+              newHistory.push('  about         - Show about section');
+              break;
+            case 'projects':
+              newHistory.push('  projects      - View project showcase');
+              break;
+            case 'skills':
+              newHistory.push('  skills        - Display skills and tech stack');
+              break;
+            case 'faang':
+              newHistory.push('  faang         - FAANG interview preparation');
+              break;
+            case 'contact':
+              newHistory.push('  contact       - Contact information');
+              break;
+            case 'whoami':
+              newHistory.push('  whoami        - Display user info');
+              break;
+            case 'clear':
+              newHistory.push('  clear         - Clear terminal');
+              break;
+          }
+        });
         break;
 
       case 'whoami':
@@ -70,21 +133,6 @@ const TerminalPanel = () => {
         // This would trigger showing the FAANG content
         break;
 
-      case 'certs':
-        newHistory.push('Loading certifications and publications...');
-        // This would trigger showing the certifications content
-        break;
-
-      case 'blog':
-        newHistory.push('Loading personal projects and blog...');
-        // This would trigger showing the blog content
-        break;
-
-      case 'interests':
-        newHistory.push('Loading personal interests...');
-        // This would trigger showing the interests content
-        break;
-
       case 'contact':
         newHistory.push('Contact Information:');
         newHistory.push('Email: arjun.reddy@email.com');
@@ -93,12 +141,7 @@ const TerminalPanel = () => {
         break;
 
       case 'clear':
-        setHistory([
-          'AGI Terminal v3.9.0 - Arjun Reddy Portfolio System',
-          'Type "help" for available commands.',
-          '',
-          'arjun@agi-portfolio:~$ '
-        ]);
+        setHistory(getInitialHistory());
         return;
 
       case '':
