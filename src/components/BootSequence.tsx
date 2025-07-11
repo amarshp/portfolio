@@ -13,11 +13,7 @@ const BootSequence = ({ onComplete }: BootSequenceProps) => {
     { text: ">> Boot Sequence Initiated", type: "normal", delay: 300 },
     { text: ">> Initializing Neural Lattice [██████        ] 60%", type: "normal", delay: 500 },
     { text: ">> Activating NLP Engine v4.2", type: "normal", delay: 400 },
-    { text: ">> Compiling Knowledge Graph", type: "normal", delay: 600 },
-    { text: ">> Calibrating Cognitive Functions", type: "normal", delay: 500 },
     { text: ">> WARNING: High processing load detected", type: "warning", delay: 300 },
-    { text: ">> Verifying Encryption Keys", type: "normal", delay: 400 },
-    { text: ">> Secure Connection Established", type: "normal", delay: 500 },
     { text: ">> STATUS: ONLINE", type: "success", delay: 800 }
   ];
 
@@ -171,7 +167,7 @@ const BootSequence = ({ onComplete }: BootSequenceProps) => {
             {bootSteps.slice(0, currentStep).map((step, index) => (
               <div
                 key={index}
-                className={`font-mono text-sm ${
+                className={`font-mono text-xs ${
                   step.type === 'warning' ? 'boot-warning' : 
                   step.type === 'success' ? 'text-neon-green' : 'boot-text'
                 } ${index === currentStep - 1 ? 'typewriter' : ''}`}
@@ -180,7 +176,7 @@ const BootSequence = ({ onComplete }: BootSequenceProps) => {
               </div>
             ))}
             {currentStep < bootSteps.length && (
-              <div className="font-mono text-sm boot-text">
+              <div className="font-mono text-xs boot-text">
                 <span className="animate-pulse">█</span>
               </div>
             )}

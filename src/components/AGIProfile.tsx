@@ -1,10 +1,11 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { User, Code, Brain, Target, ExternalLink, Download, Github, Linkedin, Globe, Battery } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
 import { Badge } from './ui/badge';
-import avatarImage from '../assets/avatar-arjun.jpg';
+import avatarImage from '/data/profile_pic.jpeg';
+import configService from '../services/configService';
 
 const SkillBar = ({ skill, level }: { skill: string; level: number }) => (
   <div className="mb-4">
@@ -110,6 +111,34 @@ const BatteryIcon = ({ level }: { level: number }) => {
 };
 
 const AGIProfile = () => {
+  const [profile, setProfile] = useState<any>(null);
+  const [system, setSystem] = useState<any>(null);
+  const [achievements, setAchievements] = useState<any>(null);
+  const [contact, setContact] = useState<any>(null);
+
+  useEffect(() => {
+    const loadConfig = async () => {
+      await configService.loadConfig();
+      setProfile(configService.getProfile());
+      setSystem(configService.getSystem());
+      setAchievements(configService.getAchievements());
+      setContact(configService.getContact());
+    };
+    loadConfig();
+  }, []);
+
+  if (!profile) {
+    return (
+      <div className="h-full bg-background border-r border-neon-cyan/30 overflow-y-auto">
+        <div className="p-6">
+          <div className="text-center text-muted-foreground font-mono">
+            Loading profile...
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="h-full bg-background border-r border-neon-cyan/30 overflow-y-auto">
       <div className="p-6 space-y-6">
@@ -122,9 +151,12 @@ const AGIProfile = () => {
           <div className="flex justify-center">
             <div className="relative">
               <img 
-                src={avatarImage} 
-                alt="Arjun Reddy"
+                src={profile.avatar || avatarImage} 
+                alt={profile.name}
                 className="w-20 h-20 rounded-full border-2 border-neon-cyan neon-glow"
+                onError={(e) => {
+                  e.currentTarget.src = avatarImage;
+                }}
               />
               <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-neon-green rounded-full border-2 border-background" />
             </div>
@@ -132,29 +164,30 @@ const AGIProfile = () => {
 
           {/* Identity */}
           <div className="text-center space-y-2">
-            <h2 className="font-mono text-lg font-bold">Arjun Reddy</h2>
-            <p className="font-mono text-sm text-neon-cyan">Senior Data Scientist & AI Consultant</p>
+            <h2 className="font-mono text-lg font-bold">{profile.name}</h2>
+            <p className="font-mono text-sm text-neon-cyan">{profile.title}</p>
+            <p className="font-mono text-xs text-muted-foreground">{profile.location}</p>
             
             {/* Enhanced Status Badges */}
             <div className="flex justify-center space-x-2 mt-3">
               <Badge variant="outline" className="font-mono text-xs neon-glow border-neon-cyan/50">
-                Version: v3.9
+                Version: v{profile.version}
               </Badge>
               <Badge variant="outline" className="font-mono text-xs neon-glow border-neon-magenta/50">
                 Uptime: 48,732 hrs
               </Badge>
               <Badge variant="outline" className="font-mono text-xs neon-glow border-neon-green/50 flex items-center space-x-1">
-                <BatteryIcon level={88} />
-                <span>88%</span>
+                <BatteryIcon level={system?.battery?.level || 88} />
+                <span>{system?.battery?.level || 88}%</span>
               </Badge>
             </div>
           </div>
 
           {/* Professional Overview */}
           <div className="space-y-2 text-xs font-mono">
-            <p>🎓 IIT Hyderabad, B.Tech AI, 2019</p>
-            <p>🏢 Fortune 500 consulting experience</p>
-            <p>🤖 Passionate about agentic AI & RAG</p>
+            <p>🎓 {profile.education?.institution}, {profile.education?.degree}</p>
+            <p>🏢 {profile.company}</p>
+            <p>🤖 {profile.current_role}</p>
           </div>
         </div>
 
@@ -186,11 +219,11 @@ const AGIProfile = () => {
         <div className="bg-card/20 border border-border/30 rounded-lg p-4 space-y-4">
           <h3 className="font-mono text-sm font-medium text-neon-cyan">QUICK.METRICS</h3>
           <div className="grid grid-cols-2 gap-2">
-            <MetricCard icon={Code} label="Total Projects" value="34" />
+            <MetricCard icon={Code} label="Total Projects" value={achievements?.project_metrics?.projects_completed?.toString() || "34"} />
             <MetricCard icon={User} label="LinkedIn Reach" value="21K+" />
-            <MetricCard icon={Github} label="GitHub Stars" value="2.4K+" />
-            <MetricCard icon={Target} label="Certifications" value="12" />
-            <MetricCard icon={Brain} label="Published Papers" value="5" />
+            <MetricCard icon={Github} label="GitHub Stars" value={achievements?.github_stats?.stars?.toString() || "2.4K+"} />
+            <MetricCard icon={Target} label="Certifications" value={achievements?.certifications?.length?.toString() || "12"} />
+            <MetricCard icon={Brain} label="Published Papers" value={achievements?.publications?.research_papers?.toString() || "5"} />
             <MetricCard icon={Target} label="Marathon Events" value="6" />
           </div>
         </div>
@@ -199,23 +232,48 @@ const AGIProfile = () => {
         <div className="bg-card/20 border border-border/30 rounded-lg p-4 space-y-4">
           <h3 className="font-mono text-sm font-medium text-neon-cyan">QUICK.LINKS</h3>
           <div className="grid grid-cols-2 gap-2">
-            <Button variant="outline" size="sm" className="font-mono text-xs neon-glow">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="font-mono text-xs neon-glow"
+              onClick={() => window.open(contact?.resume, '_blank')}
+            >
               <Download className="w-3 h-3 mr-1" />
               Resume
             </Button>
-            <Button variant="outline" size="sm" className="font-mono text-xs neon-glow">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="font-mono text-xs neon-glow"
+              onClick={() => window.open(contact?.professional_links?.github, '_blank')}
+            >
               <Github className="w-3 h-3 mr-1" />
               GitHub
             </Button>
-            <Button variant="outline" size="sm" className="font-mono text-xs neon-glow">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="font-mono text-xs neon-glow"
+              onClick={() => window.open(contact?.professional_links?.linkedin, '_blank')}
+            >
               <Linkedin className="w-3 h-3 mr-1" />
               LinkedIn
             </Button>
-            <Button variant="outline" size="sm" className="font-mono text-xs neon-glow">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="font-mono text-xs neon-glow"
+              onClick={() => window.open(contact?.blog_writing?.medium, '_blank')}
+            >
               <Globe className="w-3 h-3 mr-1" />
               Blog
             </Button>
-            <Button variant="outline" size="sm" className="font-mono text-xs neon-glow col-span-2">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="font-mono text-xs neon-glow col-span-2"
+              onClick={() => window.open(`mailto:${contact?.email}`, '_blank')}
+            >
               <ExternalLink className="w-3 h-3 mr-1" />
               Contact
             </Button>

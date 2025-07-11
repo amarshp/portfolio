@@ -1,0 +1,337 @@
+{
+  "profile": {
+    "name": "Amarsh Pedapati",
+    "avatar": "/data/profile_pic.jpeg",
+    "title": "Senior Data Scientist & AI Consultant",
+    "version": "3.9.0",
+    "company": "Blend360",
+    "location": "Hyderabad, India",
+    "education": {
+      "institution": "IIT Hyderabad",
+      "degree": "Artificial Intelligence & Machine Learning"
+    },
+    "experience": {
+      "companies": "Fortune 500 Companies",
+      "role": "Senior Data Scientist",
+      "specialties": [
+        "Agentic AI & RAG Architecture Specialist",
+        "Full-Stack Data Scientist"
+      ]
+    },
+    "research_focus": [
+      "Large Language Models & Generative AI",
+      "Autonomous AI Agents & Multi-Agent Systems",
+      "Retrieval-Augmented Generation (RAG)",
+      "Computer Vision & Deep Learning"
+    ],
+    "current_role": "Building next-generation AI systems that can reason, learn, and interact with humans naturally."
+  },
+  "system": {
+    "battery": {
+      "level": 87,
+      "status": "Charging",
+      "power_source": "AC Adapter",
+      "estimated_runtime": "6h 30m"
+    },
+    "hardware": {
+      "memory": "16GB RAM",
+      "cpu": "Intel i7-12700K",
+      "gpu": "RTX 4080"
+    },
+    "network": {
+      "connection": "Stable",
+      "latency": "12ms",
+      "bandwidth": "1Gbps"
+    },
+    "security": {
+      "firewall": "Active",
+      "vpn": "Connected",
+      "updates": "Current"
+    },
+    "performance": {
+      "cpu_usage": 23,
+      "memory_usage": 67,
+      "disk_usage": 45,
+      "network_load": 12
+    },
+    "temperature": {
+      "cpu": 45,
+      "gpu": 52,
+      "system": 38
+    }
+  },
+  "skills": {
+    "programming_languages": [
+      {
+        "name": "Python",
+        "percentage": 95,
+        "icon": "🐍"
+      },
+      {
+        "name": "JavaScript/TS",
+        "percentage": 90,
+        "icon": "⚡"
+      },
+      {
+        "name": "SQL",
+        "percentage": 88,
+        "icon": "🗄️"
+      },
+      {
+        "name": "Java",
+        "percentage": 85,
+        "icon": "☕"
+      },
+      {
+        "name": "C++",
+        "percentage": 80,
+        "icon": "⚙️"
+      }
+    ],
+    "ai_ml_technologies": [
+      {
+        "name": "TensorFlow",
+        "percentage": 95,
+        "icon": "🤖"
+      },
+      {
+        "name": "PyTorch",
+        "percentage": 92,
+        "icon": "🔥"
+      },
+      {
+        "name": "LangChain",
+        "percentage": 90,
+        "icon": "🔗"
+      },
+      {
+        "name": "OpenAI API",
+        "percentage": 88,
+        "icon": "🧠"
+      },
+      {
+        "name": "Hugging Face",
+        "percentage": 85,
+        "icon": "🤗"
+      }
+    ],
+    "cloud_devops": [
+      {
+        "name": "AWS",
+        "percentage": 90,
+        "icon": "☁️"
+      },
+      {
+        "name": "Docker",
+        "percentage": 88,
+        "icon": "🐳"
+      },
+      {
+        "name": "Kubernetes",
+        "percentage": 85,
+        "icon": "⚓"
+      },
+      {
+        "name": "CI/CD",
+        "percentage": 82,
+        "icon": "🔄"
+      }
+    ],
+    "frameworks_tools": [
+      {
+        "name": "React/Next.js",
+        "percentage": 88,
+        "icon": "⚛️"
+      },
+      {
+        "name": "FastAPI",
+        "percentage": 90,
+        "icon": "🚀"
+      },
+      {
+        "name": "PostgreSQL",
+        "percentage": 85,
+        "icon": "🐘"
+      },
+      {
+        "name": "Redis",
+        "percentage": 80,
+        "icon": "🔴"
+      }
+    ]
+  },
+  "projects": {
+    "ai_ml": [
+      {
+        "name": "Autonomous AI Agent Framework",
+        "description": "Multi-agent system for autonomous decision making",
+        "tech": ["Python", "LangChain", "OpenAI"]
+      },
+      {
+        "name": "Multi-Modal RAG System",
+        "description": "Retrieval-augmented generation with multiple data types",
+        "tech": ["Python", "Transformers", "Vector DB"]
+      },
+      {
+        "name": "Computer Vision Pipeline",
+        "description": "Real-time object detection and classification",
+        "tech": ["Python", "OpenCV", "TensorFlow"]
+      },
+      {
+        "name": "Natural Language Processing Toolkit",
+        "description": "Comprehensive NLP utilities and models",
+        "tech": ["Python", "spaCy", "NLTK"]
+      }
+    ],
+    "web_applications": [
+      {
+        "name": "Real-time Analytics Dashboard",
+        "description": "Live data visualization and monitoring",
+        "tech": ["React", "D3.js", "WebSocket"]
+      },
+      {
+        "name": "E-commerce Recommendation Engine",
+        "description": "ML-powered product recommendations",
+        "tech": ["Python", "Scikit-learn", "FastAPI"]
+      },
+      {
+        "name": "Social Media Sentiment Analyzer",
+        "description": "Real-time sentiment analysis of social posts",
+        "tech": ["Python", "NLTK", "Twitter API"]
+      },
+      {
+        "name": "Portfolio Website",
+        "description": "This interactive portfolio site",
+        "tech": ["React", "TypeScript", "xterm.js"]
+      }
+    ],
+    "data_science": [
+      {
+        "name": "Predictive Analytics Models",
+        "description": "Time series forecasting and prediction",
+        "tech": ["Python", "Prophet", "Pandas"]
+      },
+      {
+        "name": "Customer Segmentation Analysis",
+        "description": "ML-based customer clustering",
+        "tech": ["Python", "Scikit-learn", "K-means"]
+      },
+      {
+        "name": "A/B Testing Framework",
+        "description": "Statistical testing and analysis platform",
+        "tech": ["Python", "SciPy", "Matplotlib"]
+      }
+    ],
+    "github_url": "https://github.com/amarshp"
+  },
+  "achievements": {
+    "awards_recognition": [
+      {
+        "title": "Top 1% Data Scientist",
+        "platform": "Kaggle",
+        "year": 2023
+      },
+      {
+        "title": "Best Paper Award",
+        "conference": "ICML 2023",
+        "year": 2023
+      },
+      {
+        "title": "Google Developer Expert (GDE)",
+        "platform": "Google",
+        "year": 2023
+      },
+      {
+        "title": "AWS Community Builder",
+        "platform": "AWS",
+        "year": 2023
+      }
+    ],
+    "github_stats": {
+      "repositories": 45,
+      "stars": 2500,
+      "forks": 800,
+      "contributions": 1200
+    },
+    "project_metrics": {
+      "projects_completed": 50,
+      "clients_served": 25,
+      "revenue_generated": "$500K+",
+      "team_size_led": 15
+    },
+    "certifications": [
+      "AWS Solutions Architect",
+      "Google Cloud Professional",
+      "Microsoft Azure AI Engineer",
+      "TensorFlow Developer"
+    ],
+    "publications": {
+      "research_papers": 8,
+      "technical_blogs": 50,
+      "conference_talks": 20,
+      "open_source_contributions": 100
+    }
+  },
+  "contact": {
+    "email": "amarsh.pedapati@gmail.com",
+    "resume": "/data/CV.pdf",
+    "professional_links": {
+      "linkedin": "https://www.linkedin.com/in/amarshp/",
+      "github": "https://github.com/amarshp"
+    },
+    "blog_writing": {
+      "medium": "https://medium.com/@amarsh.pedapati",
+      "personal_blog": "https://alephzeroinvictus.blogspot.com"
+    },
+    "social_media": {
+      "instagram": "https://www.instagram.com/amarshpedapati/"
+    },
+    "business": "Available for consulting, speaking, and collaboration.",
+    "leetcode": "https://leetcode.com/u/user3260SU/"
+  },
+  "terminal": {
+    "prompt": "AP@agi-portfolio:~$",
+    "welcome_message": "AGI Terminal v3.9.0 - Amarsh Pedapati Portfolio System",
+    "help_text": "Type 'help' for available commands",
+    "system_status": "ONLINE",
+    "error_message": "Command not recognized. Type 'help' for available commands.",
+    "commands": {
+      "help": {
+        "description": "Show this help message",
+        "category": "navigation"
+      },
+      "about": {
+        "description": "Display personal bio and background",
+        "category": "portfolio"
+      },
+      "projects": {
+        "description": "List portfolio projects",
+        "category": "portfolio"
+      },
+      "skills": {
+        "description": "Display technical skills and proficiency",
+        "category": "portfolio"
+      },
+      "leetcode": {
+        "description": "Show LeetCode stats and rank",
+        "category": "resources"
+      },
+      "achievements": {
+        "description": "Show professional achievements and metrics",
+        "category": "portfolio"
+      },
+      "clear": {
+        "description": "Clear terminal screen",
+        "category": "system"
+      },
+      "reboot": {
+        "description": "Reboot the entire UI and terminal system",
+        "category": "system"
+      },
+      "diagnostics": {
+        "description": "Run system diagnostics",
+        "category": "system"
+      }
+    }
+  }
+} 
