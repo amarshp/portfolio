@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 
 interface BootSequenceProps {
@@ -39,7 +40,7 @@ const BootSequence = ({ onComplete }: BootSequenceProps) => {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-boot-bg flex items-center justify-center">
+    <div className="fixed inset-0 z-50 bg-boot-bg flex flex-col items-center justify-center">
       {/* Star field background */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(50)].map((_, i) => (
@@ -55,71 +56,72 @@ const BootSequence = ({ onComplete }: BootSequenceProps) => {
         ))}
       </div>
 
-      <div className="relative z-10 text-center">
-        {/* Neural Core */}
-        <div className="relative mx-auto mb-16">
-          {/* Outer rings */}
+      {/* Reduced size neural core section */}
+      <div className="relative z-10 flex flex-col items-center mb-8">
+        {/* Neural Core - Smaller size */}
+        <div className="relative mx-auto mb-8">
+          {/* Outer rings - Reduced size */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <svg width="400" height="400" className="absolute">
+            <svg width="280" height="280" className="absolute">
               {/* Outer ring - Security Layers */}
               <circle
-                cx="200"
-                cy="200"
-                r="180"
+                cx="140"
+                cy="140"
+                r="130"
                 fill="none"
                 stroke="hsl(var(--neon-violet))"
                 strokeWidth="2"
-                strokeDasharray="1130"
-                strokeDashoffset={currentStep >= 7 ? "0" : "1130"}
+                strokeDasharray="816"
+                strokeDashoffset={currentStep >= 7 ? "0" : "816"}
                 className="transition-all duration-1000 ease-out opacity-60"
                 style={{ animation: 'boot-ring-fill 2s ease-out forwards' }}
               />
-              <text x="200" y="40" textAnchor="middle" fill="hsl(var(--neon-violet))" className="text-xs font-mono">
+              <text x="140" y="25" textAnchor="middle" fill="hsl(var(--neon-violet))" className="text-xs font-mono">
                 Security Layers
               </text>
             </svg>
             
-            <svg width="300" height="300" className="absolute">
+            <svg width="220" height="220" className="absolute">
               {/* Middle ring - Data Streams */}
               <circle
-                cx="150"
-                cy="150"
-                r="135"
+                cx="110"
+                cy="110"
+                r="100"
                 fill="none"
                 stroke="hsl(var(--neon-magenta))"
                 strokeWidth="2"
-                strokeDasharray="848"
-                strokeDashoffset={currentStep >= 4 ? "0" : "848"}
+                strokeDasharray="628"
+                strokeDashoffset={currentStep >= 4 ? "0" : "628"}
                 className="transition-all duration-1000 ease-out opacity-80"
                 style={{ animation: 'boot-ring-fill 1.5s ease-out forwards', animationDelay: '0.5s' }}
               />
-              <text x="150" y="30" textAnchor="middle" fill="hsl(var(--neon-magenta))" className="text-xs font-mono">
+              <text x="110" y="25" textAnchor="middle" fill="hsl(var(--neon-magenta))" className="text-xs font-mono">
                 Data Streams
               </text>
             </svg>
             
-            <svg width="200" height="200" className="absolute">
+            <svg width="160" height="160" className="absolute">
               {/* Inner ring - Cognition Modules */}
               <circle
-                cx="100"
-                cy="100"
-                r="90"
+                cx="80"
+                cy="80"
+                r="70"
                 fill="none"
                 stroke="hsl(var(--neon-cyan))"
                 strokeWidth="3"
-                strokeDasharray="565"
-                strokeDashoffset={currentStep >= 2 ? "0" : "565"}
+                strokeDasharray="440"
+                strokeDashoffset={currentStep >= 2 ? "0" : "440"}
                 className="transition-all duration-1000 ease-out"
                 style={{ animation: 'boot-ring-fill 1s ease-out forwards', animationDelay: '1s' }}
               />
-              <text x="100" y="25" textAnchor="middle" fill="hsl(var(--neon-cyan))" className="text-xs font-mono">
+              <text x="80" y="20" textAnchor="middle" fill="hsl(var(--neon-cyan))" className="text-xs font-mono">
                 Cognition Modules
               </text>
             </svg>
           </div>
 
-          {/* Central Sphere */}
-          <div className="w-32 h-32 mx-auto neural-core relative overflow-hidden">
+          {/* Central Sphere - Smaller size */}
+          <div className="w-24 h-24 mx-auto neural-core relative overflow-hidden">
             <div 
               className="absolute inset-2 rounded-full border-2 border-neon-cyan"
               style={{ 
@@ -154,36 +156,36 @@ const BootSequence = ({ onComplete }: BootSequenceProps) => {
           </div>
         </div>
 
-        {/* Console Output */}
-        <div className="w-full max-w-2xl mx-auto">
-          <div className="bg-black/50 border border-neon-green/30 rounded-lg p-6 text-left">
-            <div className="space-y-2">
-              {bootSteps.slice(0, currentStep).map((step, index) => (
-                <div
-                  key={index}
-                  className={`font-mono text-sm ${
-                    step.type === 'warning' ? 'boot-warning' : 
-                    step.type === 'success' ? 'text-neon-green' : 'boot-text'
-                  } ${index === currentStep - 1 ? 'typewriter' : ''}`}
-                >
-                  {step.text}
-                </div>
-              ))}
-              {currentStep < bootSteps.length && (
-                <div className="font-mono text-sm boot-text">
-                  <span className="animate-pulse">█</span>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
         {/* Final status */}
         {currentStep >= bootSteps.length && (
-          <div className="mt-8 text-neon-green font-mono text-xl animate-pulse">
+          <div className="mb-8 text-neon-green font-mono text-xl animate-pulse">
             SYSTEM READY
           </div>
         )}
+      </div>
+
+      {/* Console Output - With proper padding from neural core */}
+      <div className="relative z-10 w-full max-w-2xl mx-auto px-4">
+        <div className="bg-black/50 border border-neon-green/30 rounded-lg p-6 text-left">
+          <div className="space-y-2">
+            {bootSteps.slice(0, currentStep).map((step, index) => (
+              <div
+                key={index}
+                className={`font-mono text-sm ${
+                  step.type === 'warning' ? 'boot-warning' : 
+                  step.type === 'success' ? 'text-neon-green' : 'boot-text'
+                } ${index === currentStep - 1 ? 'typewriter' : ''}`}
+              >
+                {step.text}
+              </div>
+            ))}
+            {currentStep < bootSteps.length && (
+              <div className="font-mono text-sm boot-text">
+                <span className="animate-pulse">█</span>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
