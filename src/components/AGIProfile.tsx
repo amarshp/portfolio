@@ -1,10 +1,35 @@
-
 import { useState } from 'react';
-import { User, Code, Brain, Target, ExternalLink, Download, Github, Linkedin, Globe, Battery } from 'lucide-react';
+import { ChevronDown, ChevronRight, User, Code, Brain, Target, ExternalLink, Download, Github, Linkedin, Globe } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
-import { Badge } from './ui/badge';
 import avatarImage from '../assets/avatar-arjun.jpg';
+
+interface SectionProps {
+  title: string;
+  children: React.ReactNode;
+  defaultOpen?: boolean;
+}
+
+const CollapsibleSection = ({ title, children, defaultOpen = false }: SectionProps) => {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  return (
+    <div className="mb-4">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center w-full p-3 bg-card border border-neon-cyan/30 rounded-lg hover:border-neon-cyan/60 transition-colors neon-glow"
+      >
+        {isOpen ? <ChevronDown className="w-4 h-4 mr-2" /> : <ChevronRight className="w-4 h-4 mr-2" />}
+        <span className="font-mono text-sm font-medium">{title}</span>
+      </button>
+      {isOpen && (
+        <div className="mt-2 p-4 bg-card/50 border border-neon-cyan/20 rounded-lg">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const SkillBar = ({ skill, level }: { skill: string; level: number }) => (
   <div className="mb-3">
@@ -86,92 +111,58 @@ const MetricCard = ({ icon: Icon, label, value, onClick }: {
   </Card>
 );
 
-const BatteryIcon = ({ level }: { level: number }) => {
-  return (
-    <div className="relative w-8 h-4 border border-neon-green rounded-sm bg-background">
-      {/* Battery tip */}
-      <div className="absolute -right-1 top-1 w-1 h-2 bg-neon-green rounded-r-sm"></div>
-      {/* Battery fill */}
-      <div 
-        className="h-full bg-neon-green rounded-sm transition-all duration-300"
-        style={{ width: `${level}%` }}
-      />
-      {/* Battery segments */}
-      <div className="absolute inset-0 flex">
-        {[1, 2, 3, 4].map((segment) => (
-          <div 
-            key={segment}
-            className="flex-1 border-r border-background last:border-r-0"
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
-
 const AGIProfile = () => {
   return (
     <div className="h-full bg-background border-r border-neon-cyan/30 overflow-y-auto">
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-4">
         
-        {/* Profile Section */}
-        <div className="space-y-4">
-          <h3 className="font-mono text-sm font-medium text-neon-cyan mb-4">AGI.PROFILE</h3>
-          
-          {/* Avatar */}
-          <div className="flex justify-center">
-            <div className="relative">
-              <img 
-                src={avatarImage} 
-                alt="Arjun Reddy"
-                className="w-20 h-20 rounded-full border-2 border-neon-cyan neon-glow"
-              />
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-neon-green rounded-full border-2 border-background" />
+        {/* Profile Section - Default Open */}
+        <CollapsibleSection title="AGI.PROFILE" defaultOpen={true}>
+          <div className="space-y-4">
+            {/* Avatar */}
+            <div className="flex justify-center">
+              <div className="relative">
+                <img 
+                  src={avatarImage} 
+                  alt="Arjun Reddy"
+                  className="w-20 h-20 rounded-full border-2 border-neon-cyan neon-glow"
+                />
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-neon-green rounded-full border-2 border-background" />
+              </div>
+            </div>
+
+            {/* Identity */}
+            <div className="text-center space-y-1">
+              <h2 className="font-mono text-lg font-bold">Arjun Reddy</h2>
+              <p className="font-mono text-sm text-neon-cyan">Senior Data Scientist & AI Consultant</p>
+              <div className="flex justify-center space-x-4 text-xs font-mono text-muted-foreground">
+                <span>Version: v3.9</span>
+                <span>Uptime: 48,732 hrs</span>
+                <span className="text-neon-green">Battery: 88%</span>
+              </div>
+            </div>
+
+            {/* Professional Overview */}
+            <div className="space-y-2 text-xs font-mono">
+              <p>🎓 IIT Hyderabad, B.Tech AI, 2019</p>
+              <p>🏢 Fortune 500 consulting experience</p>
+              <p>🤖 Passionate about agentic AI & RAG</p>
             </div>
           </div>
-
-          {/* Identity */}
-          <div className="text-center space-y-2">
-            <h2 className="font-mono text-lg font-bold">Arjun Reddy</h2>
-            <p className="font-mono text-sm text-neon-cyan">Senior Data Scientist & AI Consultant</p>
-            
-            {/* Enhanced Status Badges */}
-            <div className="flex justify-center space-x-2 mt-3">
-              <Badge variant="outline" className="font-mono text-xs neon-glow border-neon-cyan/50">
-                Version: v3.9
-              </Badge>
-              <Badge variant="outline" className="font-mono text-xs neon-glow border-neon-magenta/50">
-                Uptime: 48,732 hrs
-              </Badge>
-              <Badge variant="outline" className="font-mono text-xs neon-glow border-neon-green/50 flex items-center space-x-1">
-                <BatteryIcon level={88} />
-                <span>88%</span>
-              </Badge>
-            </div>
-          </div>
-
-          {/* Professional Overview */}
-          <div className="space-y-2 text-xs font-mono">
-            <p>🎓 IIT Hyderabad, B.Tech AI, 2019</p>
-            <p>🏢 Fortune 500 consulting experience</p>
-            <p>🤖 Passionate about agentic AI & RAG</p>
-          </div>
-        </div>
+        </CollapsibleSection>
 
         {/* Core Skills */}
-        <div className="space-y-4">
-          <h3 className="font-mono text-sm font-medium text-neon-cyan">CORE.SKILLS</h3>
+        <CollapsibleSection title="CORE.SKILLS">
           <div className="grid grid-cols-1 gap-3">
             <SkillBar skill="Data Science" level={95} />
             <SkillBar skill="Deep Learning" level={90} />
             <SkillBar skill="ML Ops" level={85} />
             <SkillBar skill="NLP" level={92} />
           </div>
-        </div>
+        </CollapsibleSection>
 
         {/* Additional Skills */}
-        <div className="space-y-4">
-          <h3 className="font-mono text-sm font-medium text-neon-cyan">ADDITIONAL.SKILLS</h3>
+        <CollapsibleSection title="ADDITIONAL.SKILLS">
           <div className="grid grid-cols-2 gap-4">
             <CircularProgress skill="CP/DSA" level={85} />
             <CircularProgress skill="Cloud Eng" level={80} />
@@ -180,11 +171,10 @@ const AGIProfile = () => {
             <CircularProgress skill="RAG Arch" level={88} />
             <CircularProgress skill="Data Pipelines" level={82} />
           </div>
-        </div>
+        </CollapsibleSection>
 
         {/* Quick Metrics */}
-        <div className="space-y-4">
-          <h3 className="font-mono text-sm font-medium text-neon-cyan">QUICK.METRICS</h3>
+        <CollapsibleSection title="QUICK.METRICS">
           <div className="grid grid-cols-2 gap-2">
             <MetricCard icon={Code} label="Total Projects" value="34" />
             <MetricCard icon={User} label="LinkedIn Reach" value="21K+" />
@@ -193,11 +183,10 @@ const AGIProfile = () => {
             <MetricCard icon={Brain} label="Published Papers" value="5" />
             <MetricCard icon={Target} label="Marathon Events" value="6" />
           </div>
-        </div>
+        </CollapsibleSection>
 
         {/* Quick Links */}
-        <div className="space-y-4">
-          <h3 className="font-mono text-sm font-medium text-neon-cyan">QUICK.LINKS</h3>
+        <CollapsibleSection title="QUICK.LINKS">
           <div className="grid grid-cols-2 gap-2">
             <Button variant="outline" size="sm" className="font-mono text-xs neon-glow">
               <Download className="w-3 h-3 mr-1" />
@@ -220,7 +209,7 @@ const AGIProfile = () => {
               Contact
             </Button>
           </div>
-        </div>
+        </CollapsibleSection>
 
       </div>
     </div>
