@@ -2,6 +2,8 @@
 
 A modern, interactive portfolio for Amarsh Pedapati, Senior Data Scientist & AI Consultant. This project features a terminal-inspired UI, dynamic profile, and a showcase of AI/ML, data science, and software engineering expertise.
 
+## Live Demo: https://portfolio-luz9-nus2tt7qd-amarshs-projects.vercel.app/
+
 ## Features
 - **Terminal-inspired UI**: Type commands to explore the portfolio interactively.
 - **Dynamic AGI Profile**: View professional background, skills, achievements, and contact info.
