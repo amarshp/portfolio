@@ -17,7 +17,6 @@ const TerminalPanel = () => {
   const [projects, setProjects] = useState<any>(null);
   const [skills, setSkills] = useState<any>(null);
   const [achievements, setAchievements] = useState<any>(null);
-  const [faangPrep, setFaangPrep] = useState<any>(null);
   const [contact, setContact] = useState<any>(null);
   const [terminalConfig, setTerminalConfig] = useState<any>(null);
   const [isTyping, setIsTyping] = useState(false);
@@ -40,7 +39,6 @@ const TerminalPanel = () => {
       setProjects(config.projects);
       setSkills(config.skills);
       setAchievements(config.achievements);
-      setFaangPrep(config.faang_prep);
       setContact(config.contact);
       setTerminalConfig(terminal);
       const now = new Date();
@@ -323,21 +321,24 @@ const TerminalPanel = () => {
           </div>
         )}
         {showPromptInput && !isTyping && (
-          <div className="whitespace-pre-wrap">
-            <span className="inline-flex">
-              <span>{prompt}&nbsp;</span>
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyPress={handleKeyPress}
-                className="bg-transparent border-none outline-none text-terminal-text font-mono flex-1 caret-terminal-cursor"
-                autoFocus
-                disabled={isTyping}
-              />
-              <span className="animate-pulse text-terminal-cursor">█</span>
-            </span>
-          </div>
+          <>
+            <div className="whitespace-pre-wrap">{''}</div>
+            <div className="whitespace-pre-wrap">
+              <span className="inline-flex">
+                <span>{prompt}&nbsp;</span>
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  className="bg-transparent border-none outline-none text-terminal-text font-mono flex-1 caret-terminal-cursor"
+                  autoFocus
+                  disabled={isTyping}
+                />
+                <span className="animate-pulse text-terminal-cursor">█</span>
+              </span>
+            </div>
+          </>
         )}
       </div>
 

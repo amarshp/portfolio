@@ -124,35 +124,6 @@ export interface PortfolioConfig {
       open_source_contributions: number;
     };
   };
-  faang_prep: {
-    study_materials: Array<{
-      name: string;
-      description: string;
-      type: string;
-    }>;
-    focus_areas: string[];
-    progress_tracking: {
-      easy_problems: {
-        solved: number;
-        total: number;
-      };
-      medium_problems: {
-        solved: number;
-        total: number;
-      };
-      hard_problems: {
-        solved: number;
-        total: number;
-      };
-      system_design_scenarios: number;
-    };
-    interview_experience: Array<{
-      company: string;
-      stage: string;
-      status: string;
-    }>;
-    tips: string[];
-  };
   contact: {
     email: string;
     resume: string;
@@ -199,7 +170,8 @@ const fallbackConfig: PortfolioConfig = {
     location: "Hyderabad, India",
     education: {
       institution: "IIT Hyderabad",
-      degree: "Artificial Intelligence & Machine Learning"
+      degree: "Artificial Intelligence & Machine Learning",
+      specialization: "" // Added missing property
     },
     experience: {
       companies: "Fortune 500 Companies",
@@ -316,7 +288,7 @@ const fallbackConfig: PortfolioConfig = {
   achievements: {
     awards_recognition: [
       { title: "Top 1% Data Scientist", platform: "Kaggle", year: 2023 },
-      { title: "Best Paper Award", conference: "ICML 2023", year: 2023 }
+      { title: "Best Paper Award", platform: "ICML 2023", year: 2023 }
     ],
     github_stats: {
       repositories: 45,
@@ -342,33 +314,6 @@ const fallbackConfig: PortfolioConfig = {
       conference_talks: 20,
       open_source_contributions: 100
     }
-  },
-  faang_prep: {
-    study_materials: [
-      { name: "LeetCode Premium", description: "500+ problems solved", type: "Coding Practice" },
-      { name: "System Design Primer", description: "Scalable architectures", type: "System Design" }
-    ],
-    focus_areas: [
-      "Data Structures & Algorithms",
-      "System Design & Architecture",
-      "Machine Learning & AI",
-      "Behavioral & Leadership"
-    ],
-    progress_tracking: {
-      easy_problems: { solved: 150, total: 150 },
-      medium_problems: { solved: 280, total: 350 },
-      hard_problems: { solved: 70, total: 100 },
-      system_design_scenarios: 25
-    },
-    interview_experience: [
-      { company: "Google", stage: "Phone Screen", status: "Passed" },
-      { company: "Meta", stage: "Onsite", status: "In Progress" }
-    ],
-    tips: [
-      "Practice daily",
-      "Focus on fundamentals",
-      "Build real-world projects to stand out"
-    ]
   },
   contact: {
     email: "amarsh.pedapati@gmail.com",
@@ -484,7 +429,7 @@ class ConfigService {
    */
   private validateConfig(config: unknown): config is PortfolioConfig {
     // Basic validation - check for required top-level keys
-    const requiredKeys = ['profile', 'system', 'skills', 'projects', 'achievements', 'faang_prep', 'contact', 'terminal'];
+    const requiredKeys = ['profile', 'system', 'skills', 'projects', 'achievements', 'contact', 'terminal'];
     if (typeof config !== 'object' || config === null) return false;
     for (const key of requiredKeys) {
       if (!(key in (config as Record<string, unknown>))) {
@@ -551,13 +496,6 @@ class ConfigService {
     return this.config?.achievements || fallbackConfig.achievements;
   }
 
-  /**
-   * Get FAANG prep information
-   * @returns FAANG prep config or fallback
-   */
-  getFaangPrep() {
-    return this.config?.faang_prep || fallbackConfig.faang_prep;
-  }
 
   /**
    * Get contact information
