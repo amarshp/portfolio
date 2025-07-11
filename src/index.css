@@ -2,41 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* AGI Portfolio Design System - Dark Cinematic Theme */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core Dark Theme */
+    --background: 0 0% 5%;
+    --foreground: 180 100% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 8%;
+    --card-foreground: 180 100% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 180 100% 95%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 0 0% 5%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 280 100% 70%;
+    --secondary-foreground: 0 0% 5%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 180 50% 70%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 320 100% 60%;
+    --accent-foreground: 0 0% 5%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 180 100% 20%;
+    --input: 0 0% 15%;
+    --ring: 180 100% 50%;
 
-    --radius: 0.5rem;
+    /* AGI Neon Colors */
+    --neon-cyan: 180 100% 50%;
+    --neon-magenta: 320 100% 60%;
+    --neon-violet: 280 100% 70%;
+    --neon-green: 120 100% 50%;
+    --neon-orange: 30 100% 60%;
+
+    /* Boot Sequence */
+    --boot-bg: 0 0% 2%;
+    --boot-text: 120 100% 70%;
+    --boot-warning: 50 100% 60%;
+    --boot-error: 0 100% 60%;
+
+    /* Terminal */
+    --terminal-bg: 0 0% 8%;
+    --terminal-text: 120 100% 80%;
+    --terminal-cursor: 180 100% 50%;
+
+    /* Gradients */
+    --gradient-neon: linear-gradient(135deg, hsl(var(--neon-cyan)), hsl(var(--neon-magenta)));
+    --gradient-neural: linear-gradient(45deg, hsl(var(--neon-violet)), hsl(var(--neon-cyan)));
+    --gradient-glow: radial-gradient(circle, hsl(var(--neon-cyan) / 0.3), transparent 70%);
+
+    /* Shadows & Effects */
+    --shadow-neon: 0 0 20px hsl(var(--neon-cyan) / 0.5);
+    --shadow-glow: 0 0 40px hsl(var(--neon-cyan) / 0.3);
+    --shadow-deep: 0 10px 30px hsl(0 0% 0% / 0.8);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +132,164 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    overflow-x: hidden;
   }
+}
+
+/* AGI Animations & Effects */
+@layer components {
+  .neon-glow {
+    box-shadow: var(--shadow-neon);
+    transition: var(--transition-smooth);
+  }
+
+  .neon-glow:hover {
+    box-shadow: var(--shadow-glow);
+    transform: scale(1.02);
+  }
+
+  .neural-core {
+    background: var(--gradient-neural);
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .neural-core::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-glow);
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .boot-text {
+    font-family: 'JetBrains Mono', monospace;
+    color: hsl(var(--boot-text));
+    text-shadow: 0 0 10px hsl(var(--boot-text) / 0.5);
+  }
+
+  .boot-warning {
+    color: hsl(var(--boot-warning));
+    text-shadow: 0 0 10px hsl(var(--boot-warning) / 0.5);
+  }
+
+  .boot-error {
+    color: hsl(var(--boot-error));
+    text-shadow: 0 0 10px hsl(var(--boot-error) / 0.5);
+  }
+
+  .terminal-screen {
+    background: hsl(var(--terminal-bg));
+    border: 1px solid hsl(var(--neon-cyan) / 0.3);
+    box-shadow: inset 0 0 50px hsl(var(--neon-cyan) / 0.1);
+    font-family: 'JetBrains Mono', monospace;
+    color: hsl(var(--terminal-text));
+  }
+
+  .progress-ring {
+    transform-origin: center;
+    animation: rotate-ring linear infinite;
+  }
+
+  .typewriter {
+    overflow: hidden;
+    border-right: 2px solid hsl(var(--terminal-cursor));
+    white-space: nowrap;
+    animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+
+  .skill-bar {
+    background: linear-gradient(90deg, 
+      hsl(var(--neon-cyan)), 
+      hsl(var(--neon-magenta))
+    );
+    height: 4px;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      hsl(var(--foreground) / 0.3), 
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+
+  .metric-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--neon-cyan) / 0.3);
+    transition: var(--transition-smooth);
+  }
+
+  .metric-card:hover {
+    border-color: hsl(var(--neon-cyan));
+    box-shadow: var(--shadow-neon);
+    transform: translateY(-2px);
+  }
+
+  .split-screen {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+  }
+
+  @media (max-width: 768px) {
+    .split-screen {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+    }
+  }
+}
+
+/* Keyframe Animations */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+@keyframes rotate-ring {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: hsl(var(--terminal-cursor)); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes boot-sphere-scale {
+  0% { transform: scale(0.5) rotate(0deg); opacity: 0.5; }
+  50% { transform: scale(0.8) rotate(180deg); opacity: 0.8; }
+  100% { transform: scale(1) rotate(360deg); opacity: 1; }
+}
+
+@keyframes boot-ring-fill {
+  0% { stroke-dashoffset: 628; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes split-reveal {
+  0% { transform: scaleY(1); }
+  100% { transform: scaleY(0); }
 }

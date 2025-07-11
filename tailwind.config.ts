@@ -61,7 +61,23 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				'neon-cyan': 'hsl(var(--neon-cyan))',
+				'neon-magenta': 'hsl(var(--neon-magenta))',
+				'neon-violet': 'hsl(var(--neon-violet))',
+				'neon-green': 'hsl(var(--neon-green))',
+				'neon-orange': 'hsl(var(--neon-orange))',
+				'boot-bg': 'hsl(var(--boot-bg))',
+				'boot-text': 'hsl(var(--boot-text))',
+				'boot-warning': 'hsl(var(--boot-warning))',
+				'boot-error': 'hsl(var(--boot-error))',
+				'terminal-bg': 'hsl(var(--terminal-bg))',
+				'terminal-text': 'hsl(var(--terminal-text))',
+				'terminal-cursor': 'hsl(var(--terminal-cursor))'
+			},
+			fontFamily: {
+				'mono': ['JetBrains Mono', 'Courier New', 'monospace'],
+				'sans': ['Inter', 'system-ui', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
