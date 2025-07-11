@@ -403,7 +403,7 @@ class ConfigService {
    */
   private async fetchConfig(): Promise<PortfolioConfig> {
     try {
-      const response = await fetch('/src/data/config.json');
+      const response = await fetch('/data/config.json');
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
