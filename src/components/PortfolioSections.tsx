@@ -222,7 +222,7 @@ const PortfolioSections = () => {
           </div>
           <div className="p-4 bg-muted/20 rounded-lg">
             <h3 className="font-mono font-bold text-neon-magenta">Technical Blog</h3>
-            <p className="text-sm mt-2">arjunreddy.blogspot.com - 50+ technical articles</p>
+            <p className="text-sm mt-2">alephzeroinvictus.blogspot.com - 50+ technical articles</p>
             <ul className="space-y-1 text-sm mt-2">
               <li>📝 "Building Production RAG Systems"</li>
               <li>📝 "LLM Fine-tuning Best Practices"</li>
