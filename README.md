@@ -1,6 +1,10 @@
 # AGI Portfolio Terminal
 
-A modern, interactive portfolio for Amarsh Pedapati, Senior Data Scientist & AI Consultant. This project features a terminal-inspired UI, dynamic profile, and a showcase of AI/ML, data science, and software engineering expertise.
+A modern, interactive portfolio for Amarsh Pedapati, Senior Data Scientist & AI Consultant. This project features a terminal-inspired UI, dynamic profile.
+This project was built as a personal experiment to learn and explore AI-assisted coding workflows (using ChatGPT, Loveable, and Cursor).
+
+**Note:
+Some of the portfolio content currently includes placeholder or proxy information for demonstration purposes. This will be updated with accurate and complete details in the next version.**
 
 ## Live Demo: https://portfolio-luz9-nus2tt7qd-amarshs-projects.vercel.app/
 
@@ -70,6 +74,3 @@ Senior Data Scientist & AI Consultant
 [LinkedIn](https://www.linkedin.com/in/amarshp/) | [GitHub](https://github.com/amarshp) | [Medium](https://medium.com/@amarsh.pedapati)
 
 For business inquiries: amarsh.pedapati@gmail.com
-
-## License
-[Specify your license here]
